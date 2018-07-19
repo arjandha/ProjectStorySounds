@@ -15,7 +15,14 @@
         },
         "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "com.projectstorysounds"
+        },
+        "cordova-plugin-media": {
+            "PACKAGE_NAME": "com.projectstorysounds"
         }
     },
-    "dependent_plugins": {}
+    "dependent_plugins": {
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.projectstorysounds"
+        }
+    }
 }
