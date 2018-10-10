@@ -8,19 +8,19 @@
     },
     "installed_plugins": {
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.projectstorysounds"
+            "PACKAGE_NAME": "com.soundbites"
         },
         "cordova-plugin-console": {
-            "PACKAGE_NAME": "com.projectstorysounds"
+            "PACKAGE_NAME": "com.soundbites"
         },
         "cordova-plugin-statusbar": {
-            "PACKAGE_NAME": "com.projectstorysounds"
+            "PACKAGE_NAME": "com.soundbites"
         },
         "cordova-plugin-file": {
-            "PACKAGE_NAME": "com.projectstorysounds"
+            "PACKAGE_NAME": "com.soundbites"
         },
         "cordova-plugin-media": {
-            "PACKAGE_NAME": "com.projectstorysounds"
+            "PACKAGE_NAME": "com.soundbites"
         }
     },
     "dependent_plugins": {},
