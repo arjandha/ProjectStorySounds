@@ -275,8 +275,9 @@ myApp.onPageInit('index', function(page) {
 
     loadSounds( mainSounds );
     $$('.circleimage').on('click', function() {
-        var path = window.location.pathname;
-        path = path.substr(path, path.length - 10);
+        //var path = window.location.pathname;
+        //path = path.substr(path, path.length - 10);
+        var path = "";
         findSelectedSound( path, this.id, mainSounds );
     });
 }).trigger();
@@ -301,7 +302,7 @@ function findSelectedSound(basepath, id, soundList) {
 
 function loadImage(sound, target) {
   var $imgTag = $$("<img src='" + sound.imagePath + "' class='circleimage lazy' id='" + sound.id + "'>");
-  var $id = $$("<center><h1>" + sound.name + "</h1></center>");
+  var $id = $$("<center><h3>" + sound.name + "</h3></center>");
   $imgTag.appendTo(target);
   $id.appendTo(target);
 }
