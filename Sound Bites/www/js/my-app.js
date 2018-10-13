@@ -275,9 +275,8 @@ myApp.onPageInit('index', function(page) {
 
     loadSounds( mainSounds );
     $$('.circleimage').on('click', function() {
-        //var path = window.location.pathname;
-        //path = path.substr(path, path.length - 10);
-        var path = "file:///android_asset/www/";
+        var path = window.location.pathname;
+        path = path.substr(path, path.length - 10);
         findSelectedSound( path, this.id, mainSounds );
     });
 }).trigger();
