@@ -276,8 +276,9 @@ myApp.onPageInit('index', function(page) {
 
     loadSounds($$('#main .sound-block'), mainSounds );
     $$('.circleimage').on('click', function() {
-        var path = window.location.pathname;
-        path = path.substr(path, path.length - 10);
+        //var path = window.location.pathname;
+        //path = path.substr(path, path.length - 10);
+        path = ""
         findSelectedSound( path, this.id, mainSounds );
     });
 }).trigger();
@@ -295,7 +296,7 @@ function findSelectedSound(basepath, id, soundList) {
         if( soundList[i].id == id )
         {
             var path = basepath + soundList[i].soundPath;
-            //alert(path);
+            alert(path);
             playAudio( path );
         }
     }
