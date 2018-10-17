@@ -19,7 +19,7 @@
   width: 100%;
 }
 
-.page-content {
+#main {
   background-image: url("../img/background/Gradient3.jpg");
   background-size: cover;
 }

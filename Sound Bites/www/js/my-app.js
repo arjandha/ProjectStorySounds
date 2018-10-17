@@ -12,9 +12,10 @@ var mainView = myApp.addView('.view-main', {
 });
 
 // Handle Cordova Device Ready Event
-$$(document).on('deviceready', function() {
-    console.log("Device is ready!");
-});
+$$(document).on('deviceready', onDeviceReady(), false);
+
+function onDeviceReady() {
+
 
 class SoundEffect {
   constructor(id,name,imagePath,soundPath) {
@@ -51,7 +52,7 @@ myApp.onPageInit('whacky', function (page) {
     ];
 
     // Do something here for "about" page
-    loadSounds( whackySounds );
+    loadSounds( $$('#whacky .sound-block'), whackySounds );
     $$('.circleimage').on('click', function() {
         var path = window.location.pathname;
         path = path.substr(path, path.length - 10);
@@ -88,7 +89,7 @@ myApp.onPageInit('space', function (page) {
     ];
 
     // Do something here for "about" page
-    loadSounds( spaceStorySounds );
+    loadSounds( $$('#space .sound-block'), spaceStorySounds );
     $$('.circleimage').on('click', function() {
         var path = window.location.pathname;
         path = path.substr(path, path.length - 10);
@@ -132,7 +133,7 @@ myApp.onPageInit('scary', function (page) {
     ];
 
     // Do something here for "about" page
-    loadSounds( scaryStorySounds );
+    loadSounds($$('#scary .sound-block'), scaryStorySounds );
     $$('.circleimage').on('click', function() {
         var path = window.location.pathname;
         path = path.substr(path, path.length - 10);
@@ -166,7 +167,7 @@ myApp.onPageInit('old', function (page) {
     ];
 
     // Do something here for "about" page
-    loadSounds( oldFashionedSounds );
+    loadSounds($$('#old .sound-block'), oldFashionedSounds );
     $$('.circleimage').on('click', function() {
         var path = window.location.pathname;
         path = path.substr(path, path.length - 10);
@@ -206,7 +207,7 @@ myApp.onPageInit('animals', function (page) {
     ];
 
     // Do something here for "about" page
-    loadSounds( animalSounds );
+    loadSounds($$('#animals .sound-block'), animalSounds );
     $$('.circleimage').on('click', function() {
         var path = window.location.pathname;
         path = path.substr(path, path.length - 10);
@@ -237,7 +238,7 @@ myApp.onPageInit('fairy', function(page) {
       new SoundEffect( "Wizard1", "Wizard", "img/FairyTale/Wizard1.svg", "sound/FairyTale/Wizard1.mp3" )
     ];
 
-    loadSounds( fairyTaleSounds );
+    loadSounds($$('#fairy .sound-block'), fairyTaleSounds );
     $$('.circleimage').on('click', function() {
         var path = window.location.pathname;
         path = path.substr(path, path.length - 10);
@@ -273,7 +274,7 @@ myApp.onPageInit('index', function(page) {
       new SoundEffect( "Wind1", "Wind", "img/Main/Wind1.svg", "sound/Main/Wind1.mp3" )
     ];
 
-    loadSounds( mainSounds );
+    loadSounds($$('#main .sound-block'), mainSounds );
     $$('.circleimage').on('click', function() {
         var path = window.location.pathname;
         path = path.substr(path, path.length - 10);
@@ -294,6 +295,7 @@ function findSelectedSound(basepath, id, soundList) {
         if( soundList[i].id == id )
         {
             var path = basepath + soundList[i].soundPath;
+            //alert(path);
             playAudio( path );
         }
     }
@@ -306,36 +308,45 @@ function loadImage(sound, target) {
   $id.appendTo(target);
 }
 
-function loadSounds( sounds ) {
-  console.log( sounds[0].id );
-  var $contentblock = $$('.sound-block');
+function loadSounds($contentblock, sounds ) {
+  //console.log( sounds[0].id );
   $contentblock.html('');
-  for( var i = 0; i < sounds.length; i +=3 )
+  for( var i = 0; i < sounds.length; i += 4 )
   {
     var $divRow = $$( "<div class='row'>" );
     if( i < sounds.length ) {
-      var $songDiv = $$("<div class='col-33'>");
+      var $songDiv = $$("<div class='col-25'>");
       loadImage( sounds[i], $songDiv );
       $songDiv.appendTo($divRow);
     }
     if( i + 1 < sounds.length ) {
-      var $songDiv = $$("<div class='col-33'>");
+      var $songDiv = $$("<div class='col-25'>");
       loadImage( sounds[i + 1], $songDiv );
       $songDiv.appendTo($divRow);
     }
     else {
-      var $songDiv = $$("<div class='col-33'>");
+      var $songDiv = $$("<div class='col-25'>");
       $songDiv.appendTo($divRow);
     }
     if( i + 2 < sounds.length ) {
-      var $songDiv = $$("<div class='col-33'>");
+      var $songDiv = $$("<div class='col-25'>");
       loadImage( sounds[i + 2], $songDiv );
       $songDiv.appendTo($divRow);
     }
     else {
-      var $songDiv = $$("<div class='col-33'>");
+      var $songDiv = $$("<div class='col-25'>");
+      $songDiv.appendTo($divRow);
+    }
+    if( i + 3 < sounds.length ) {
+      var $songDiv = $$("<div class='col-25'>");
+      loadImage( sounds[i + 3], $songDiv );
+      $songDiv.appendTo($divRow);
+    }
+    else {
+      var $songDiv = $$("<div class='col-25'>");
       $songDiv.appendTo($divRow);
     }
     $divRow.appendTo($contentblock);
   }
+}
 }
