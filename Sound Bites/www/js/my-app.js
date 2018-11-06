@@ -16,6 +16,11 @@ $$(document).on('deviceready', onDeviceReady(), false);
 
 function onDeviceReady() {
 
+  $$('.panel-close').on('click', function(e)
+  {
+    myApp.closePanel();
+  });
+
 
 class SoundEffect {
   constructor(id,name,imagePath,soundPath) {
@@ -27,7 +32,7 @@ class SoundEffect {
 }
 
 // Now we need to run the code that will be executed only for About page.
-var sound;
+var sound = new Audio();
 
 // Option 1. Using page callback for page (for "about" page in this case) (recommended way):
 myApp.onPageInit('whacky', function (page) {
@@ -278,7 +283,7 @@ myApp.onPageInit('index', function(page) {
     $$('.circleimage').on('click', function() {
         //var path = window.location.pathname;
         //path = path.substr(path, path.length - 10);
-        path = ""
+        path = "";
         findSelectedSound( path, this.id, mainSounds );
     });
 }).trigger();
@@ -286,8 +291,10 @@ myApp.onPageInit('index', function(page) {
 
 function playAudio(src) {
     if( sound )
-      sound.stop();
-    sound = new Media( src );
+      sound.pause();
+    //sound = new Media( src );
+    sound.src = src;
+    sound.load()
     sound.play();
 }
 
@@ -296,7 +303,7 @@ function findSelectedSound(basepath, id, soundList) {
         if( soundList[i].id == id )
         {
             var path = basepath + soundList[i].soundPath;
-            alert(path);
+            //alert(path);
             playAudio( path );
         }
     }

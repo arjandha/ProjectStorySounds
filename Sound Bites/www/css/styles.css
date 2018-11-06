@@ -20,6 +20,36 @@
 }
 
 #main {
+  background-image: url("../img/background/Gradient1.jpg");
+  background-size: cover;
+}
+
+#animals {
+  background-image: url("../img/background/Gradient2.jpg");
+  background-size: cover;
+}
+
+#fairy {
   background-image: url("../img/background/Gradient3.jpg");
+  background-size: cover;
+}
+
+#old {
+  background-image: url("../img/background/Gradient4.jpg");
+  background-size: cover;
+}
+
+#scary {
+  background-image: url("../img/background/Gradient5.jpg");
+  background-size: cover;
+}
+
+#space {
+  background-image: url("../img/background/Gradient6.jpg");
+  background-size: cover;
+}
+
+#whacky {
+  background-image: url("../img/background/Gradient7.jpg");
   background-size: cover;
 }
