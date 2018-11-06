@@ -31,9 +31,6 @@ class SoundEffect {
   }
 }
 
-// Now we need to run the code that will be executed only for About page.
-var sound = new Audio();
-
 // Option 1. Using page callback for page (for "about" page in this case) (recommended way):
 myApp.onPageInit('whacky', function (page) {
     var whackySounds = [
@@ -59,9 +56,7 @@ myApp.onPageInit('whacky', function (page) {
     // Do something here for "about" page
     loadSounds( $$('#whacky .sound-block'), whackySounds );
     $$('.circleimage').on('click', function() {
-        var path = window.location.pathname;
-        path = path.substr(path, path.length - 10);
-        findSelectedSound( path, this.id, whackySounds );
+        findSelectedSound( this.id, whackySounds );
     });
 });
 
@@ -96,9 +91,7 @@ myApp.onPageInit('space', function (page) {
     // Do something here for "about" page
     loadSounds( $$('#space .sound-block'), spaceStorySounds );
     $$('.circleimage').on('click', function() {
-        var path = window.location.pathname;
-        path = path.substr(path, path.length - 10);
-        findSelectedSound( path, this.id, spaceStorySounds );
+        findSelectedSound( this.id, spaceStorySounds );
     });
 });
 
@@ -140,9 +133,7 @@ myApp.onPageInit('scary', function (page) {
     // Do something here for "about" page
     loadSounds($$('#scary .sound-block'), scaryStorySounds );
     $$('.circleimage').on('click', function() {
-        var path = window.location.pathname;
-        path = path.substr(path, path.length - 10);
-        findSelectedSound( path, this.id, scaryStorySounds );
+        findSelectedSound( this.id, scaryStorySounds );
     });
 });
 
@@ -174,9 +165,7 @@ myApp.onPageInit('old', function (page) {
     // Do something here for "about" page
     loadSounds($$('#old .sound-block'), oldFashionedSounds );
     $$('.circleimage').on('click', function() {
-        var path = window.location.pathname;
-        path = path.substr(path, path.length - 10);
-        findSelectedSound( path, this.id, oldFashionedSounds );
+        findSelectedSound( this.id, oldFashionedSounds );
     });
 });
 
@@ -214,9 +203,7 @@ myApp.onPageInit('animals', function (page) {
     // Do something here for "about" page
     loadSounds($$('#animals .sound-block'), animalSounds );
     $$('.circleimage').on('click', function() {
-        var path = window.location.pathname;
-        path = path.substr(path, path.length - 10);
-        findSelectedSound( path, this.id, animalSounds );
+        findSelectedSound( this.id, animalSounds );
     });
 });
 
@@ -245,9 +232,7 @@ myApp.onPageInit('fairy', function(page) {
 
     loadSounds($$('#fairy .sound-block'), fairyTaleSounds );
     $$('.circleimage').on('click', function() {
-        var path = window.location.pathname;
-        path = path.substr(path, path.length - 10);
-        findSelectedSound( path, this.id, fairyTaleSounds );
+        findSelectedSound( this.id, fairyTaleSounds );
     });
 }).trigger();
 
@@ -281,30 +266,27 @@ myApp.onPageInit('index', function(page) {
 
     loadSounds($$('#main .sound-block'), mainSounds );
     $$('.circleimage').on('click', function() {
-        //var path = window.location.pathname;
-        //path = path.substr(path, path.length - 10);
-        path = "";
-        findSelectedSound( path, this.id, mainSounds );
+        findSelectedSound( this.id, mainSounds );
     });
 }).trigger();
 
-
+var sound = null;
 function playAudio(src) {
-    if( sound )
+    if( sound ) {
       sound.pause();
-    //sound = new Media( src );
-    sound.src = src;
-    sound.load()
+      sound = null;
+    }
+    sound = new Media( src );
+    //sound.src = src;
+    //sound.load()
     sound.play();
 }
 
-function findSelectedSound(basepath, id, soundList) {
+function findSelectedSound(id, soundList) {
     for( var i = 0; i < soundList.length; i++ ) {
         if( soundList[i].id == id )
         {
-            var path = basepath + soundList[i].soundPath;
-            //alert(path);
-            playAudio( path );
+            playAudio( soundList[i].soundPath );
         }
     }
 }
