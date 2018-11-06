@@ -270,15 +270,13 @@ myApp.onPageInit('index', function(page) {
     });
 }).trigger();
 
-var sound = null;
+var sound;
 function playAudio(src) {
     if( sound ) {
       sound.pause();
       sound = null;
     }
-    sound = new Media( src );
-    //sound.src = src;
-    //sound.load()
+    sound = new Audio( src );
     sound.play();
 }
 
